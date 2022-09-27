@@ -2,7 +2,7 @@
 
 Unofficial Apache JMeter Flatpak package.
 
-Waiting for [official response](https://bz.apache.org/bugzilla/show_bug.cgi?id=66258) in order to give them the control of this repository.
+Waiting for [official response](https://github.com/apache/jmeter/issues/5702) in order to give them the control of this repository.
 
 ## Permissions
 
