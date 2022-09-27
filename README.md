@@ -2,7 +2,7 @@
 
 Unofficial Apache JMeter Flatpak package.
 
-Currently waiting for [official response](https://bz.apache.org/bugzilla/show_bug.cgi?id=66258) as is recommended by the [Flathub App Submission](https://github.com/flathub/flathub/wiki/App-Submission) page.
+Waiting for [official response](https://bz.apache.org/bugzilla/show_bug.cgi?id=66258) in order to give them the control of this repository.
 
 ## Permissions
 
@@ -21,6 +21,4 @@ Since the application folder is readonly it has been enabled the following confi
 
 ## Known issues
 
-Currently **JavaFX** is not installed. Not sure yet what is the best, if add it manually as a module or as a runtime extension (as is proposed in [this issue](https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk/issues/1)).
-
-Also the current configuration doesn't allow the **[JMeter Plugins Manager](https://github.com/undera/jmeter-plugins-manager)** to install plugins, this can be fixed modifying the plugin and [an issue](https://groups.google.com/g/jmeter-plugins/c/-rJeqHz8lCw) have been created to allow custom property to be used to designate the JMeter home to be used so that the `jmeter-wrapper.sh` can point it to `~/.var/app/org.apache.jmeter/data/jmeter/`.
+The current configuration doesn't allow the **[JMeter Plugins Manager](https://github.com/undera/jmeter-plugins-manager)** to install plugins, this can be fixed modifying the plugin and [an issue](https://groups.google.com/g/jmeter-plugins/c/-rJeqHz8lCw) have been created to allow custom property to be used to designate the JMeter home to be used so that the `jmeter-wrapper.sh` can point it to `~/.var/app/org.apache.jmeter/data/jmeter/`.
