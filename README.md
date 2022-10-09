@@ -20,7 +20,3 @@ Since the application folder is readonly it has been enabled the following confi
 - User plugins directory: `~/.var/app/org.apache.jmeter/data/jmeter/lib/ext/`
 - Application log: `~/.var/app/org.apache.jmeter/.local/state/jmeter/jmeter.log`
 - Force use local help browser to ease accessing the help while this [external issue](https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk17/issues/1) is not fixed.
-
-## Known issues
-
-The current configuration doesn't allow the **[JMeter Plugins Manager](https://github.com/undera/jmeter-plugins-manager)** to install plugins, this can be fixed in the plugin and a new [issue](https://groups.google.com/g/jmeter-plugins/c/-rJeqHz8lCw) have been created.
