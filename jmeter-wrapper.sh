@@ -1,6 +1,8 @@
 #!/bin/sh
 
 JRE_HOME="/app/jre"
+JAVA_HOME="$JRE_HOME"
+export JAVA_HOME
 export JRE_HOME
 
 # Workarround for Flatpak <1.13
