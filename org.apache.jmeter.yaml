@@ -12,7 +12,6 @@ finish-args:
   - --socket=x11
   - --share=ipc
   - --share=network
-  - --env=PATH=/app/bin:/app/jre/bin:/usr/bin
   - --filesystem=xdg-documents
 
 modules:
