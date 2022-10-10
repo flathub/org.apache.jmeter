@@ -14,6 +14,12 @@ finish-args:
   - --share=network
   - --filesystem=xdg-documents
 
+add-extensions:
+  org.apache.jmeter.Help:
+    directory: docs
+    bundle: true
+    autodelete: true
+
 modules:
   - name: openjdk
     buildsystem: simple
@@ -30,7 +36,9 @@ modules:
       - install -Dpm644 -t /app/share/applications org.apache.jmeter.desktop
       - install -Dpm644 -t /app/share/metainfo org.apache.jmeter.metainfo.xml
         # Copy User Manual
-      - mv docs printable_docs /app
+      - mv docs /app
+      - mv printable_docs/usermanual /app/docs/
+      - ln -s docs /app/printable_docs
     cleanup:
       - /bin/*.bat
       - /bin/*.cmd
@@ -44,11 +52,7 @@ modules:
       - /docs/images/mstile-*.png
       - /docs/images/jmeter_square.*
       - /docs/images/screenshoots/changes
-      - /printable_docs/*.*
-      - /printable_docs/demos
-      - /printable_docs/extending
-      - /printable_docs/localising
-      - /printable_docs/usermanual/*.pdf
+      - /docs/usermanual/*.pdf
     sources:
       - type: archive
         url: https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz
