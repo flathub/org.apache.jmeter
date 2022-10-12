@@ -11,9 +11,9 @@
     <p>Folders used:</p>
     <ul>
       <li>Open and save JMX files: the user Documents folder (use Flatseal to allow acces to other folders)</li>
-      <li>Plugins directory: <i>~/.var/app/org.apache.jmeter/data/jmeter/lib/ext/</i></li>
-      <li>User configuration: <i>~/.var/app/org.apache.jmeter/config/jmeter/user.properties</i></li>
-      <li>Application log: <i>~/.var/app/org.apache.jmeter/.local/state/jmeter/jmeter.log</i></li>
+      <li>Plugins directory: ~/.var/app/org.apache.jmeter/data/jmeter/lib/ext/</li>
+      <li>User configuration: ~/.var/app/org.apache.jmeter/config/jmeter/user.properties</li>
+      <li>Application log: ~/.var/app/org.apache.jmeter/.local/state/jmeter/jmeter.log</li>
     </ul>
   </description>
   <url type="homepage">https://jmeter.apache.org/</url>
