@@ -8,6 +8,13 @@
   <summary>Load testing and performance measurement application</summary>
   <description>
     <p>Apache JMeter is a desktop application to design and run load test and measurements.</p>
+    <p>Folders used:</p>
+    <ul>
+      <li>Open and save JMX files: the user Documents folder (use Flatseal to allow acces to other folders)</li>
+      <li>Plugins directory: <i>~/.var/app/org.apache.jmeter/data/jmeter/lib/ext/</i></li>
+      <li>User configuration: <i>~/.var/app/org.apache.jmeter/config/jmeter/user.properties</i></li>
+      <li>Application log: <i>~/.var/app/org.apache.jmeter/.local/state/jmeter/jmeter.log</i></li>
+    </ul>
   </description>
   <url type="homepage">https://jmeter.apache.org/</url>
   <url type="bugtracker">https://github.com/apache/jmeter/issues</url>
