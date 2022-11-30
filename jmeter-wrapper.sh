@@ -20,11 +20,15 @@ mkdir -p "$JMETER_CLASSPATH" "$JMETER_LIBEXT" \
 
 [ -e "$JMETER_CONFIG" ] || cp /app/bin/user.properties "$JMETER_CONFIG"
 
-# Force help.local=true since browser integration is not working
-# https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk17/issues/1
+# Enable local help only when optional .Help extension is installed
+if [ -d /app/docs/usermanual ]; then
+  JMETER_LOCAL_HELP="true"
+else
+  JMETER_LOCAL_HELP="false"
+fi
 
 exec /app/bin/jmeter \
-  -J "help.local=true" \
+  -J "help.local=${JMETER_LOCAL_HELP}" \
   -J "search_paths=${JMETER_LIBEXT}" \
   -J "user.classpath=${JMETER_CLASSPATH}" \
   -J "jmeter.gui.action.save.backup_directory=${JMETER_BACKUPS}" \
