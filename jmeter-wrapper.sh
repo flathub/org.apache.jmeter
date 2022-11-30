@@ -21,7 +21,7 @@ mkdir -p "$JMETER_CLASSPATH" "$JMETER_LIBEXT" \
 [ -e "$JMETER_CONFIG" ] || cp /app/bin/user.properties "$JMETER_CONFIG"
 
 # Enable local help only when optional .Help extension is installed
-if [ -d /app/docs/usermanual ]; then
+if [ -d /app/printable_docs/usermanual ]; then
   JMETER_LOCAL_HELP="true"
 else
   JMETER_LOCAL_HELP="false"
