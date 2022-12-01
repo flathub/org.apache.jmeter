@@ -19,4 +19,7 @@ Since the application folder is readonly it has been enabled the following confi
 - User configuration: `~/.var/app/org.apache.jmeter/config/jmeter/user.properties`
 - User plugins directory: `~/.var/app/org.apache.jmeter/data/jmeter/lib/ext/`
 - Application log: `~/.var/app/org.apache.jmeter/.local/state/jmeter/jmeter.log`
-- Force use local help browser to ease accessing the help while this [external issue](https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk17/issues/1) is not fixed.
+- GUI save backups: `~/.var/app/org.apache.jmeter/.local/state/jmeter/backups`
+
+Opening GUI links in a browser is not working due this [external issue](https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk17/issues/1).
+But with the `org.apache.jmeter.Help` extension installed, the application help can be viewed in the internal help browser.
