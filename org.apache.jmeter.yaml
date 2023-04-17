@@ -28,15 +28,15 @@ modules:
   - name: JMeter
     buildsystem: simple
     build-commands:
-      - mv bin lib /app
+      - cp -R bin lib /app/
       - install -Dpm755 -t /app/bin jmeter-wrapper.sh
       - install -Dpm644 -T docs/images/jmeter_square.png /app/share/icons/hicolor/256x256/apps/org.apache.jmeter.png
       - install -Dpm644 -T docs/images/jmeter_square.svg /app/share/icons/hicolor/scalable/apps/org.apache.jmeter.svg
       - install -Dpm644 -t /app/share/applications org.apache.jmeter.desktop
       - install -Dpm644 -t /app/share/metainfo org.apache.jmeter.metainfo.xml
         # Copy User Manual
-      - mv docs /app
-      - mv printable_docs/usermanual /app/docs/
+      - mv printable_docs/usermanual docs/
+      - cp -R docs /app/
       - ln -s docs /app/printable_docs
     cleanup:
       - /bin/*.bat
