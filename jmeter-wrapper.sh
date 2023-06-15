@@ -27,6 +27,12 @@ else
   JMETER_LOCAL_HELP="false"
 fi
 
+HOME_FSTYPE=$(df --output=fstype "$HOME" | tail -1)
+if [ "$HOME_FSTYPE" = "tmpfs" ]; then
+  echo "INFO: Using temporal filesystem as HOME. An empty warning file has been created." > /dev/stderr
+  touch "$HOME/DO NOT SAVE HERE - TEMPORAL FOLDER.jmx"
+fi
+
 exec /app/bin/jmeter \
   -J "help.local=${JMETER_LOCAL_HELP}" \
   -J "search_paths=${JMETER_LIBEXT}" \
