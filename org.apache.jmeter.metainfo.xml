@@ -34,6 +34,7 @@
   </screenshots>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="5.6.2" date="2023-07-11"/>
     <release version="5.6.1" date="2023-07-10"/>
     <release version="5.6" date="2023-06-23"/>
     <!-- https://jmeter.apache.org/changes.html -->
