@@ -34,11 +34,14 @@ modules:
       - install -Dpm644 -T docs/images/jmeter_square.png /app/share/icons/hicolor/256x256/apps/org.apache.jmeter.png
       - install -Dpm644 -T docs/images/jmeter_square.svg /app/share/icons/hicolor/scalable/apps/org.apache.jmeter.svg
       - install -Dpm644 -t /app/share/applications org.apache.jmeter.desktop
-      - install -Dpm644 -t /app/share/metainfo org.apache.jmeter.metainfo.xml
         # Copy User Manual
       - mv printable_docs/usermanual docs/
       - cp -R docs /app/
       - ln -s docs /app/printable_docs
+    post-install:
+      - install -Dpm644 -t /app/share/metainfo org.apache.jmeter.metainfo.xml
+      - install -Dpm644 -t /app/docs/share/metainfo org.apache.jmeter.Help.metainfo.xml
+      - appstream-compose --basename=org.apache.jmeter.Help --prefix=/app/docs --origin=flatpak org.apache.jmeter.Help
     cleanup:
       - /bin/*.bat
       - /bin/*.cmd
@@ -67,3 +70,5 @@ modules:
         path: org.apache.jmeter.desktop
       - type: file
         path: org.apache.jmeter.metainfo.xml
+      - type: file
+        path: org.apache.jmeter.Help.metainfo.xml
