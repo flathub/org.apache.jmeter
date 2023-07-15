@@ -29,19 +29,19 @@ modules:
   - name: JMeter
     buildsystem: simple
     build-commands:
-      - cp -R bin lib /app/
-      - install -Dpm755 -t /app/bin jmeter-wrapper.sh
-      - install -Dpm644 -T docs/images/jmeter_square.png /app/share/icons/hicolor/256x256/apps/org.apache.jmeter.png
-      - install -Dpm644 -T docs/images/jmeter_square.svg /app/share/icons/hicolor/scalable/apps/org.apache.jmeter.svg
-      - install -Dpm644 -t /app/share/applications org.apache.jmeter.desktop
+      - cp -R bin lib ${FLATPAK_DEST}/
+      - install -Dpm755 -t ${FLATPAK_DEST}/bin jmeter-wrapper.sh
+      - install -Dpm644 -T docs/images/jmeter_square.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - install -Dpm644 -T docs/images/jmeter_square.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/applications ${FLATPAK_ID}.desktop
         # Copy User Manual
       - mv printable_docs/usermanual docs/
-      - cp -R docs /app/
-      - ln -s docs /app/printable_docs
+      - cp -R docs ${FLATPAK_DEST}/
+      - ln -s docs ${FLATPAK_DEST}/printable_docs
     post-install:
-      - install -Dpm644 -t /app/share/metainfo org.apache.jmeter.metainfo.xml
-      - install -Dpm644 -t /app/docs/share/metainfo org.apache.jmeter.Help.metainfo.xml
-      - appstream-compose --basename=org.apache.jmeter.Help --prefix=/app/docs --origin=flatpak org.apache.jmeter.Help
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - install -Dpm644 -t ${FLATPAK_DEST}/docs/share/metainfo ${FLATPAK_ID}.Help.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID}.Help --prefix=${FLATPAK_DEST}/docs --origin=flatpak ${FLATPAK_ID}.Help
     cleanup:
       - /bin/*.bat
       - /bin/*.cmd
