@@ -16,7 +16,7 @@ finish-args:
 
 add-extensions:
   org.apache.jmeter.Help:
-    directory: docs
+    directory: share/doc/jmeter
     bundle: true
     autodelete: true
 
@@ -29,30 +29,34 @@ modules:
   - name: JMeter
     buildsystem: simple
     build-commands:
-      - cp -R bin lib /app/
-      - install -Dpm755 -t /app/bin jmeter-wrapper.sh
-      - install -Dpm644 -T docs/images/jmeter_square.png /app/share/icons/hicolor/256x256/apps/org.apache.jmeter.png
-      - install -Dpm644 -T docs/images/jmeter_square.svg /app/share/icons/hicolor/scalable/apps/org.apache.jmeter.svg
-      - install -Dpm644 -t /app/share/applications org.apache.jmeter.desktop
-      - install -Dpm644 -t /app/share/metainfo org.apache.jmeter.metainfo.xml
+      - cp -R bin lib ${FLATPAK_DEST}/
+      - install -Dpm755 -t ${FLATPAK_DEST}/bin jmeter-wrapper.sh
+      - install -Dpm644 -T docs/images/jmeter_square.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - install -Dpm644 -T docs/images/jmeter_square.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/applications ${FLATPAK_ID}.desktop
         # Copy User Manual
-      - mv printable_docs/usermanual docs/
-      - cp -R docs /app/
-      - ln -s docs /app/printable_docs
+      - mkdir -p ${FLATPAK_DEST}/share/doc/jmeter/printable_docs
+      - cp -R printable_docs/usermanual ${FLATPAK_DEST}/share/doc/jmeter/printable_docs/
+      - cp -R docs ${FLATPAK_DEST}/share/doc/jmeter/
+      - ln -s share/doc/jmeter/{docs,printable_docs} ${FLATPAK_DEST}/
+    post-install:
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/doc/jmeter/share/metainfo ${FLATPAK_ID}.Help.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID}.Help --prefix=${FLATPAK_DEST}/share/doc/jmeter --origin=flatpak ${FLATPAK_ID}.Help
     cleanup:
       - /bin/*.bat
       - /bin/*.cmd
       - /bin/*.bshrc
       - /bin/examples
         # Clean docs
-      - /docs/.htaccess
-      - /docs/api
-      - /docs/images/favicon.*
-      - /docs/images/apple-touch-icon.png
-      - /docs/images/mstile-*.png
-      - /docs/images/jmeter_square.*
-      - /docs/images/screenshoots/changes
-      - /docs/usermanual/*.pdf
+      - /share/doc/jmeter/docs/.htaccess
+      - /share/doc/jmeter/docs/api
+      - /share/doc/jmeter/docs/images/favicon.*
+      - /share/doc/jmeter/docs/images/apple-touch-icon.png
+      - /share/doc/jmeter/docs/images/mstile-*.png
+      - /share/doc/jmeter/docs/images/jmeter_square.*
+      - /share/doc/jmeter/docs/images/screenshots/changes
+      - /share/doc/jmeter/printable_docs/usermanual/*.pdf
     sources:
       - type: archive
         url: https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
@@ -67,3 +71,5 @@ modules:
         path: org.apache.jmeter.desktop
       - type: file
         path: org.apache.jmeter.metainfo.xml
+      - type: file
+        path: org.apache.jmeter.Help.metainfo.xml

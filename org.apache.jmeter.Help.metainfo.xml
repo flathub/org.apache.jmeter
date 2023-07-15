@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>org.apache.jmeter.Help</id>
+  <extends>org.apache.jmeter</extends>
+  <name>Apache JMeter help files</name>
+  <summary>Optional help files for Apache JMeter help files</summary>
+  <url type="homepage">https://jmeter.apache.org/</url>
+  <url type="help">https://jmeter.apache.org/usermanual/index.html</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+</component>
