@@ -1,10 +1,10 @@
 app-id: org.apache.jmeter
 
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.openjdk11
+  - org.freedesktop.Sdk.Extension.openjdk17
 
 command: jmeter-wrapper.sh
 finish-args:
@@ -24,25 +24,20 @@ modules:
   - name: openjdk
     buildsystem: simple
     build-commands:
-      - /usr/lib/sdk/openjdk11/install.sh
+      - /usr/lib/sdk/openjdk17/install.sh
 
-  - name: JMeter
+  - name: jmeter
     buildsystem: simple
     build-commands:
       - cp -R bin lib ${FLATPAK_DEST}/
-      - install -Dpm755 -t ${FLATPAK_DEST}/bin jmeter-wrapper.sh
-      - install -Dpm644 -T docs/images/jmeter_square.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
-      - install -Dpm644 -T docs/images/jmeter_square.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
-      - install -Dpm644 -t ${FLATPAK_DEST}/share/applications ${FLATPAK_ID}.desktop
         # Copy User Manual
       - mkdir -p ${FLATPAK_DEST}/share/doc/jmeter/printable_docs
       - cp -R printable_docs/usermanual ${FLATPAK_DEST}/share/doc/jmeter/printable_docs/
       - cp -R docs ${FLATPAK_DEST}/share/doc/jmeter/
       - ln -s share/doc/jmeter/{docs,printable_docs} ${FLATPAK_DEST}/
     post-install:
-      - install -Dpm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
-      - install -Dpm644 -t ${FLATPAK_DEST}/share/doc/jmeter/share/metainfo ${FLATPAK_ID}.Help.metainfo.xml
-      - appstream-compose --basename=${FLATPAK_ID}.Help --prefix=${FLATPAK_DEST}/share/doc/jmeter --origin=flatpak ${FLATPAK_ID}.Help
+      - install -Dpm644 -T docs/images/jmeter_square.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - install -Dpm644 -T docs/images/jmeter_square.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
     cleanup:
       - /bin/*.bat
       - /bin/*.cmd
@@ -65,6 +60,31 @@ modules:
           type: html
           url: https://jmeter.apache.org/download_jmeter.cgi
           pattern: <a href="(https://dlcdn.apache.org//?jmeter/binaries/apache-jmeter-([^/]+).tgz)">
+          is-main-source: true
+
+  - name: rhino
+    buildsystem: simple
+    build-commands:
+      - install -Dpm644 -t "${FLATPAK_DEST}/lib/ext/" rhino-engine-*.jar
+    sources:
+      - type: file
+        url: https://repo1.maven.org/maven2/org/mozilla/rhino-engine/1.7.14/rhino-engine-1.7.14.jar
+        sha256: 961ed9bb342419d6cbf9a2064508c359e9a25cd636182030584b1b742c3f9928
+        x-checker-data:
+          type: anitya
+          project-id: 229008
+          url-template: https://repo1.maven.org/maven2/org/mozilla/rhino-engine/$version/rhino-engine-$version.jar
+
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - install -Dpm755 -t ${FLATPAK_DEST}/bin jmeter-wrapper.sh
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/applications ${FLATPAK_ID}.desktop
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - install -Dpm644 -t ${FLATPAK_DEST}/share/doc/jmeter/share/metainfo ${FLATPAK_ID}.Help.metainfo.xml
+      - appstream-compose --basename=${FLATPAK_ID}.Help --prefix=${FLATPAK_DEST}/share/doc/jmeter
+        --origin=flatpak ${FLATPAK_ID}.Help
+    sources:
       - type: file
         path: jmeter-wrapper.sh
       - type: file
