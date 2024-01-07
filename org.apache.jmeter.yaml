@@ -54,8 +54,8 @@ modules:
       - /share/doc/jmeter/printable_docs/usermanual/*.pdf
     sources:
       - type: archive
-        url: https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
-        sha256: 08696d3b6278d272342d18609e2167ef28d2d1d5f71b592809c00bbd57cc8ef0
+        url: https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
+        sha256: f68efc17fe060f698c48a6abe2599a933927486bda2924dbe14c74895318ddde
         x-checker-data:
           type: html
           url: https://jmeter.apache.org/download_jmeter.cgi
