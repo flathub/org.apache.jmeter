@@ -82,8 +82,9 @@ modules:
       - install -Dpm644 -t ${FLATPAK_DEST}/share/applications ${FLATPAK_ID}.desktop
       - install -Dpm644 -t ${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
       - install -Dpm644 -t ${FLATPAK_DEST}/share/doc/jmeter/share/metainfo ${FLATPAK_ID}.Help.metainfo.xml
-      - appstream-compose --basename=${FLATPAK_ID}.Help --prefix=${FLATPAK_DEST}/share/doc/jmeter
-        --origin=flatpak ${FLATPAK_ID}.Help
+      - appstreamcli compose --no-net --prefix=/ --components=${FLATPAK_ID}.Help --origin=${FLATPAK_ID}.Help
+        --result-root=${FLATPAK_DEST}/share/doc/jmeter --data-dir=${FLATPAK_DEST}/share/doc/jmeter/share/app-info/xmls
+        ${FLATPAK_DEST}/share/doc/jmeter
     sources:
       - type: file
         path: jmeter-wrapper.sh
