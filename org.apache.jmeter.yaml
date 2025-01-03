@@ -73,6 +73,7 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 229008
+          versions: {<: 1.8.0}
           url-template: https://repo1.maven.org/maven2/org/mozilla/rhino-engine/$version/rhino-engine-$version.jar
 
   - name: metadata
