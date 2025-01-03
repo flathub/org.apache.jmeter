@@ -68,8 +68,8 @@ modules:
       - install -Dpm644 -t "${FLATPAK_DEST}/lib/ext/" rhino-engine-*.jar
     sources:
       - type: file
-        url: https://repo1.maven.org/maven2/org/mozilla/rhino-engine/1.7.15/rhino-engine-1.7.15.jar
-        sha256: b7bbb6724812a8ba6c650cf4a1e655a24af4d73a321add5a64a54c2d5963ce00
+        url: https://repo1.maven.org/maven2/org/mozilla/rhino-engine/1.8.0/rhino-engine-1.8.0.jar
+        sha256: e41a13a43f569ad596336a8bcd2eaa417f014159b40b31927f5204c2ca96e0c0
         x-checker-data:
           type: anitya
           project-id: 229008
